@@ -1,0 +1,27 @@
+[Unit]
+Description=prometheus
+Documentation=https://prometheus.io/
+After=network.target
+[Service]
+Type=simple
+User=prometheus
+ExecStartPre=/usr/local/sbin/promtool check config /etc/prometheus/prometheus.yml
+ExecStart=/usr/local/sbin/prometheus \
+          --config.file=/etc/prometheus/prometheus.yml \
+          --web.listen-address=0.0.0.0:9090 \
+          --web.enable-lifecycle \
+          --web.enable-admin-api \
+          --web.console.templates=/var/lib/prometheus/console \
+          --web.console.libraries=/var/lib/prometheus/console_libraries \
+          --web.external-url=https://prometheus.monitor.ubrmb.com \
+          --storage.tsdb.path=/app/prometheus/ \
+          --storage.tsdb.min-block-duration=2h \
+          --storage.tsdb.max-block-duration=2h \
+          --storage.tsdb.retention.time=30d \
+          --log.level=info
+ExecReload=/bin/curl -X POST http://127.0.0.1:9090/-/reload
+TimeoutStopSec=20s
+Restart=always
+LimitNOFILE=20480000
+[Install]
+WantedBy=multi-user.target
