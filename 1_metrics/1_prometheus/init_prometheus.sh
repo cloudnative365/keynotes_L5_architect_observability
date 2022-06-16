@@ -18,3 +18,9 @@ chown -R prometheus:prometheus /etc/prometheus/
 
 mkdir /app/prometheus/
 chown -R prometheus:prometheus /app/prometheus/
+
+wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/prometheus_systemd
+mv prometheus_systemd /etc/systemd/system/prometheus.service
+
+systemctl daemon-reload
+systemctl start prometheus
