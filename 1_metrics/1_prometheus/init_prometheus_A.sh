@@ -14,7 +14,7 @@ chown -R prometheus:prometheus /var/lib/prometheus
 
 mkdir /etc/prometheus/
 cd /etc/prometheus/
-wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/prometheus_A.yml
+wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/prometheus-A.yml
 mv prometheus_A.yml /etc/prometheus/prometheus.yml
 chown -R prometheus:prometheus /etc/prometheus/
 
