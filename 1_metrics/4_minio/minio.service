@@ -1,0 +1,22 @@
+[Unit]
+Description=Minio service
+Documentation=https://docs.minio.io/
+
+[Service]
+WorkingDirectory=/app/minio/run/
+EnvironmentFile=/etc/minio/minio.pw
+
+ExecStart=/usr/local/sbin/minio server \
+          --config-dir /etc/minio \
+          --address :9000 \
+          --console-address :9001 \
+          http://10.0.1.11:9000/app/minio/data \
+          http://10.0.1.12:9000/app/minio/data \
+          http://10.0.1.13:9000/app/minio/data \
+          http://10.0.1.14:9000/app/minio/data
+
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=20480000
+[Install]
+WantedBy=multi-user.target

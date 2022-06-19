@@ -1,0 +1,16 @@
+[Unit]
+Description=thanos-sidecar
+Documentation=https://thanos.io/
+After=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/thanos sidecar \
+          --tsdb.path=/app/prometheus \
+          --prometheus.url=http://localhost:9090 \
+          --http-address=0.0.0.0:10901 \
+          --grpc-address=0.0.0.0:10902
+ExecReload=/bin/kill -HUP 
+TimeoutStopSec=20s
+Restart=always
+[Install]
+WantedBy=multi-user.target

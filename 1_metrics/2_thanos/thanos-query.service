@@ -1,0 +1,21 @@
+[Unit]
+Description=thanos-query
+Documentation=https://thanos.io/
+After=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/thanos query \
+          --http-address=0.0.0.0:10903 \
+          --grpc-address=0.0.0.0:10904 \
+          --store=10.0.1.11:10902 \
+          --store=10.0.1.12:10902 \
+          --query.timeout=10m \
+          --query.max-concurrent=200 \
+          --query.max-concurrent-select=40 \
+          --query.replica-label=replica
+ExecReload=/bin/kill -HUP 
+TimeoutStopSec=20s
+Restart=always
+LimitNOFILE=20480000
+[Install]
+WantedBy=multi-user.targe
