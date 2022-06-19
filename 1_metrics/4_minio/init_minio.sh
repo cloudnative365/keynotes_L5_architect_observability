@@ -13,6 +13,9 @@ mkdir -p /app/minio/data && mkdir /etc/minio && mkdir /app/minio/run
 wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/4_minio/minio.service
 mv minio.service /etc/systemd/system/minio.service
 
+wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/4_minio/minio.pw
+mv minio.pw /etc/minio/
+
 systemctl daemon-reload
 systemctl start minio
 systemctl enable minio
