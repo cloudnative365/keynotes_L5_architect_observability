@@ -5,6 +5,13 @@ tar xf thanos-0.26.0.linux-amd64.tar.gz
 cd thanos-0.26.0.linux-amd64
 mv thanos /usr/local/sbin
 
+mkdir /app/thanos
+mkdir /app/thanos/compact
+mkdir /app/thanos/store
+mkdir /app/thanos/ruler
+
+mkdir /etc/thanos
+
 wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/2_thanos/thanos-sidecar.service
 wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/2_thanos/thanos-query.service
 

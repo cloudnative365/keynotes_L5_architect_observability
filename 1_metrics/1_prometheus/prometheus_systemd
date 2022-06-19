@@ -13,7 +13,6 @@ ExecStart=/usr/local/sbin/prometheus \
           --web.enable-admin-api \
           --web.console.templates=/var/lib/prometheus/console \
           --web.console.libraries=/var/lib/prometheus/console_libraries \
-          --web.external-url=https://prometheus.monitor.ubrmb.com \
           --storage.tsdb.path=/app/prometheus/ \
           --storage.tsdb.min-block-duration=2h \
           --storage.tsdb.max-block-duration=2h \
