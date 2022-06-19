@@ -34,7 +34,9 @@ resource "aws_instance" "jumpserver" {
   user_data = <<-EOF
         #!/bin/bash
         yum install -y net-tools vim wget epel-release
+        setenforce 0
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_node_exporter.sh|sh
+        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/3_nginx/init_nginx.sh|sh
         EOF
   tags =  {
     Name = "jumpserver"
@@ -58,8 +60,9 @@ resource "aws_instance" "node1" {
         setenforce 0
         mkdir /app/src
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_node_exporter.sh|sh
-        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_prometheus.sh|sh
+        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_prometheus_A.sh|sh
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/2_thanos/init_thanos.sh|sh
+        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/4_minio/init_minio.sh|sh
         EOF
   tags =  {
     Name = "node1"
@@ -83,8 +86,9 @@ resource "aws_instance" "node2" {
         setenforce 0
         mkdir /app/src
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_node_exporter.sh|sh
-        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_prometheus.sh|sh
+        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_prometheus_B.sh|sh
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/2_thanos/init_thanos.sh|sh
+        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/4_minio/init_minio.sh|sh
         EOF
   tags =  {
     Name = "node2"
@@ -109,6 +113,7 @@ resource "aws_instance" "node3" {
         mkdir /app/src
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_node_exporter.sh|sh
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/2_thanos/init_thanos.sh|sh
+        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/4_minio/init_minio.sh
         EOF
   tags =  {
     Name = "node3"
@@ -133,6 +138,7 @@ resource "aws_instance" "node4" {
         mkdir /app/src
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/init_node_exporter.sh|sh
         curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/2_thanos/init_thanos.sh|sh
+        curl https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/4_minio/init_minio.sh
         EOF
   tags =  {
     Name = "node4"

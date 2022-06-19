@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /app/src/
 wget https://github.com/thanos-io/thanos/releases/download/v0.26.0/thanos-0.26.0.linux-amd64.tar.gz
 tar xf https://github.com/thanos-io/thanos/releases/download/v0.26.0/thanos-0.26.0.linux-amd64.tar.gz
 cd thanos-0.26.0.linux-amd64
@@ -10,6 +11,7 @@ wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_obse
 mv thanos-sidecar.service /etc/systemd/system/
 mv thanos-query.service /etc/systemd/system/
 
+systemctl daemon-reload
 systemctl start thanos-sidecar
 systemctl start thanos-query
 

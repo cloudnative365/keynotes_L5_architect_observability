@@ -10,5 +10,6 @@ chmod +x /usr/local/sbin/mc
 
 mkdir -p /app/minio/data && mkdir /etc/minio && mkdir /app/minio/run
 
+systemctl daemon-reload
 systemctl start minio
 systemctl enable minio

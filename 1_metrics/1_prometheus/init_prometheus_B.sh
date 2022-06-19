@@ -13,7 +13,9 @@ mv console_libraries consoles /var/lib/prometheus
 chown -R prometheus:prometheus /var/lib/prometheus
 
 mkdir /etc/prometheus/
-mv prometheus.yml /etc/prometheus/prometheus.yml
+cd /etc/prometheus
+wget https://raw.githubusercontent.com/cloudnative365/keynotes_L5_architect_observability/main/1_metrics/1_prometheus/prometheus_B.yml
+mv prometheus_B.yml /etc/prometheus/prometheus.yml
 chown -R prometheus:prometheus /etc/prometheus/
 
 mkdir /app/prometheus/
